@@ -1,0 +1,17 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Try to get a screenshot
+        run: screencapture test.jpg
+      - name: Output base64 encoded screenshot
+        run: base64 test.jpg
