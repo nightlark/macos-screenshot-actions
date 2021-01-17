@@ -9,9 +9,13 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    
     steps:
       - uses: actions/checkout@v2
-      - name: Try to get a screenshot
+      - name: Make the screenshot interesting
+        run: touch test.txt && open .
+      - name: Capture a screenshot
         run: screencapture test.jpg
-      - name: Output base64 encoded screenshot
-        run: base64 test.jpg
+      - uses: actions/upload-artifact@v2
+        with:
+          path: test.jpg
